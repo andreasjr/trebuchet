@@ -75,9 +75,8 @@ main {
             left: 0;
             display: block;
             transform: scale(1.1);
+            transition: var(--wp--custom--utility--transition--default);
             transition-property: opacity, transform;
-            transition-timing-function: ease-in-out;
-            transition-duration: .3s;
             opacity: 0;
             right: unset;
             left: unset;
@@ -96,4 +95,114 @@ main {
         }
 
     }
-}    
+}
+
+.trebuchet--query--blogroll {
+    $br-bp: 1000px;
+
+
+
+    a {
+        text-decoration: none;
+        cursor: default;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    @include bp-max($br-bp) {
+        & > li > div {
+            flex-direction: column;
+        }
+    }
+
+    .wp-block-post-title {
+        flex-shrink: 1;
+        flex-basis: auto;
+        width: 20%;
+        display: block;
+
+        @include bp-min($br-bp) {
+            a {
+                display: block;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+        }
+    }
+
+    .wp-block-post-excerpt {
+        display: block;
+        flex-basis: auto;
+        flex-grow: 2;
+        opacity: .5;
+        transition: var(--wp--custom--utility--transition--default);
+        transition-property: opacity;
+
+        &:hover {
+            opacity: 1;
+        }
+        @include bp-min($br-bp) {
+            width: 60%;
+        }
+
+        p {
+            margin: 0px;
+
+            @include bp-min($br-bp) {
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+        }
+    }
+    .trebuchet--query--blogroll--item--meta {
+        margin-top: 0px;
+        flex-basis: width;
+        width: 20%;
+
+        @include bp-max($br-bp) {
+            justify-content: center;
+        }
+
+        & > * {
+            transition: var(--wp--custom--utility--transition--default);
+            cursor: default;
+            opacity: .25;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+
+        .wp-block-post-terms {
+            padding: 5px 10px;
+            border-radius: 10px;
+            display: block;
+            order: 1;
+            text-align: center;
+            border: solid 1px var(--wp--preset--color--black);
+
+            @include bp-max($br-bp) {
+                order: 2;
+            }
+
+            &::before {
+                content: "\f02b";
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+                margin-right: calc(0.5 * var( --wp--style--block-gap ));
+                display: inline-block;
+            }
+        }
+
+        .wp-block-post-date {
+            order: 2;
+
+            @include bp-max($br-bp) {
+                order: 1;
+            }
+        }
+    }
+}

@@ -10,7 +10,56 @@
         "spacing": {
             "blockGap": true
         },
+        "typography": {
+            "fontFamilies": [
+                {
+                    "fontFamily": "'Montserrat', sans-serif",
+                    "name": "Montserrat",
+                    "slug": "montserrat"
+                },
+                {
+                    "fontFamily": "'Open Sans', sans-serif",
+                    "name": "Open Sans",
+                    "slug": "open-sans"
+                }
+            ]
+        },
+        "color": {
+            "defaultPalette": false,
+            "palette": [
+                {
+                    "color": "#ffffff",
+                    "name": "White",
+                    "slug": "white"
+                },
+                {
+                    "color": "#FBFBFB",
+                    "name": "Light Gray",
+                    "slug": "light-gray"
+                },
+                {
+                    "color": "#C4C4C4",
+                    "name": "Gray",
+                    "slug": "gray"
+                },
+                {
+                    "color": "#000001",
+                    "name": "Dark Gray",
+                    "slug": "dark-gray"
+                },
+                {
+                    "color": "#000000",
+                    "name": "Black",
+                    "slug": "black"
+                }
+            ]
+        },
         "custom": {
+            "utility": {
+                "transition":{
+                    "default": "all .2s ease-in-out"
+                }
+            },
             "page":{
                 "spacing": {
                     "outer": "var(--wp--style--block-gap)"
@@ -28,6 +77,31 @@
     "styles": {
         "spacing": {
             "blockGap": "1em"
+        },
+        "color": {
+            "background": "white",
+            "text": "black"
+        },
+        "typography": {
+            "fontFamily": "var(--wp--preset--font-family--open-sans)",
+            "fontSize": "1em"
+        },
+        "blocks": {
+            "core/heading": {
+                "typography": {
+                    "fontFamily": "var(--wp--preset--font-family--montserrat)"
+                }
+            }
+        },
+        "elements": {
+            "link": {
+                "color": {
+                    "text": "black"
+                },
+                "typography": {
+                    "textDecoration": "underline"
+                }
+            }
         }
     },
     "templateParts": [
