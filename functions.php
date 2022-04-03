@@ -41,3 +41,12 @@ function trebuchet_styles() {
     wp_enqueue_script('trebuchet-js', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), filemtime( get_template_directory() . '/assets/js/main.js'));
 }
 endif;
+
+require plugin_dir_path( __FILE__ ) . 'inc/plugin-update-checker/plugin-update-checker.php';
+$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+	'https://github.com/andreasjr/trebuchet',
+	__FILE__,
+	'trebuchet'
+);
+//Set the branch that contains the stable release.
+$myUpdateChecker->setBranch('main');
