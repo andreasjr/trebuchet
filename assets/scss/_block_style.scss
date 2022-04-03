@@ -1,0 +1,26 @@
+
+
+.wp-block-group:where(.has-background) {
+    padding: 0px;
+}
+
+.is-style-padding {
+    padding-left: var(--wp--custom--page--spacing--outer);
+    padding-left: var(--wp--custom--page--spacing--outer);
+}
+
+.is-style-content-padding { 
+    padding-left: var(--wp--custom--page--spacing--outer);
+    padding-right: var(--wp--custom--page--spacing--outer); 
+
+    & .alignfull { 
+        padding-left: var(--wp--custom--page--spacing--outer);
+        padding-right: var(--wp--custom--page--spacing--outer); 
+        margin-left: calc(-1 * var(--wp--custom--page--spacing--outer)) !important;
+        margin-right: calc(-1 * var(--wp--custom--page--spacing--outer)) !important;
+        width: auto !important;
+
+        &.wp-block-cover {
+        }
+    }
+}

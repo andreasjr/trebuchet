@@ -1,0 +1,21 @@
+
+$bp-d: 900px;
+$bp-de: 37.5rem;
+$bp-s: 0;
+$bp-m: 0;
+$bp-l: 0;
+
+
+
+
+@mixin bp-max ($bp: $bp-d) {
+    @media screen and (max-width: ($bp - 1px)) {
+        @content;
+    }
+}
+
+@mixin bp-min ($bp: $bp-d) {
+    @media screen and (min-width: ($bp)) {
+        @content;
+    }
+}
