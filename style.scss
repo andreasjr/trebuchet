@@ -19,17 +19,25 @@ Use it to make something cool, have fun, and share what you've learned with othe
 @import "assets/scss/assets";
 @import "assets/scss/block_style";
 
+.wp-site-blocks {
+    @include bp-min($bp-d) {
+        margin-left: var(--wp--custom--heading--layout--width);
+    }
+}
 
 /**
  * Header
  */
 header {
-    position: fixed;
+    position: fixed !important;
     top: 0px;
     left: 0px;
     z-index: 10;
+    margin: 0px;
+
     @include bp-max($bp-d) {
-        position: sticky;
+        position: sticky !important;
+        width: 100%;
     }
     @include bp-min($bp-d) {
         width: var(--wp--custom--heading--layout--width);
@@ -54,46 +62,78 @@ header {
             justify-content: center;
         }
     }
+
+    .wp-block-site-logo {
+        @include bp-max {
+            display: none;
+            img {
+                max-height: 100px;
+                width: auto !important;
+            }
+        }
+    }
 }
 
 main {
     width: auto;
+    min-height: 100vh;
     margin-top: 0px !important;
-
-    @include bp-min {
-        margin-left: var(--wp--custom--heading--layout--width);
-        min-height: 100%;
-    }
+    position: relative;
 }
 
-.wp-block-navigation__responsive-container {
-    @include bp-max {
+.wp-block-navigation {
 
-        & {
-            position: fixed;
-            top: -100%;
-            left: 0;
-            display: block;
-            transform: scale(1.1);
-            transition: var(--wp--custom--utility--transition--default);
-            transition-property: opacity, transform;
-            opacity: 0;
-            right: unset;
-            left: unset;
-            bottom: unset;
+    & > button {
+        padding: 1em;
+        border:solid 1px white;
+        border-radius: 10px;
+    }
+
+    .wp-block-navigation__responsive-container-open:not(.always-shown) {
+        @media (min-width: 600px) {
+            display: flex;
         }
-
-        &.is-menu-open {
-            padding: 1.5em 1em;
-            top: 0;
-            left: 0;
-            opacity: 1;
-            transform: scale(1);
-            right: 0;
-            left: 0;
-            bottom: 0;
+        @include bp-min {
+            display: none;
         }
+    }
 
+    .wp-block-navigation__responsive-container {
+        &:not(.hidden-by-default):not(.is-menu-open) {
+            @media (min-width: 600px) {
+                display: none;
+            }
+            @include bp-min {
+                display: block !important;
+            }
+        }
+        @include bp-max {
+            & {
+                position: fixed;
+                top: -100%;
+                left: 0;
+                display: block;
+                transform: scale(1.1);
+                transition: var(--wp--custom--utility--transition--default);
+                transition-property: opacity, transform;
+                opacity: 0;
+                right: unset;
+                left: unset;
+                bottom: unset;
+            }
+
+            &.is-menu-open {
+                padding: 1.5em 1em;
+                top: 0;
+                left: 0;
+                opacity: 1;
+                transform: scale(1);
+                right: 0;
+                left: 0;
+                bottom: 0;
+            }
+
+        }
     }
 }
 
@@ -117,9 +157,6 @@ main {
     }
 
     .wp-block-post-title {
-        flex-shrink: 1;
-        flex-basis: auto;
-        width: 20%;
         display: block;
 
         @include bp-min($br-bp) {
@@ -134,8 +171,6 @@ main {
 
     .wp-block-post-excerpt {
         display: block;
-        flex-basis: auto;
-        flex-grow: 2;
         opacity: .5;
         transition: var(--wp--custom--utility--transition--default);
         transition-property: opacity;
@@ -143,11 +178,11 @@ main {
         &:hover {
             opacity: 1;
         }
-        @include bp-min($br-bp) {
-            width: 60%;
-        }
 
         p {
+            margin: 0px;
+        }
+        /* p {
             margin: 0px;
 
             @include bp-min($br-bp) {
@@ -155,12 +190,10 @@ main {
                 overflow: hidden;
                 white-space: nowrap;
             }
-        }
+        } */
     }
     .trebuchet--query--blogroll--item--meta {
         margin-top: 0px;
-        flex-basis: width;
-        width: 20%;
 
         @include bp-max($br-bp) {
             justify-content: center;
@@ -194,14 +227,6 @@ main {
                 font-weight: 900;
                 margin-right: calc(0.5 * var( --wp--style--block-gap ));
                 display: inline-block;
-            }
-        }
-
-        .wp-block-post-date {
-            order: 2;
-
-            @include bp-max($br-bp) {
-                order: 1;
             }
         }
     }
